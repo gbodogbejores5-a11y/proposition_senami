@@ -37,7 +37,7 @@
 
   body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: #050505;
+    background: #0a0a0a;
     color: #ffffff;
     line-height: 1.7;
     overflow-x: hidden;
@@ -49,31 +49,30 @@
     top: 0; left: 0; right: 0; bottom: 0;
     z-index: -1;
     overflow: hidden;
-    background: #050505;
+    background: #0a0a0a;
   }
 
   .bg-orb {
     position: absolute;
     border-radius: 50%;
-    filter: blur(100px);
     opacity: 0.5;
     animation: drift 25s infinite ease-in-out;
   }
   .bg-orb:nth-child(1) {
     width: 600px; height: 600px;
-    background: radial-gradient(circle, rgba(212,168,83,0.45), transparent 70%);
+    background: radial-gradient(circle, rgba(212,168,83,0.5), transparent 70%);
     top: -150px; right: -150px;
     animation-delay: 0s;
   }
   .bg-orb:nth-child(2) {
     width: 500px; height: 500px;
-    background: radial-gradient(circle, rgba(212,168,83,0.35), transparent 70%);
+    background: radial-gradient(circle, rgba(212,168,83,0.4), transparent 70%);
     bottom: -100px; left: -100px;
     animation-delay: 8s;
   }
   .bg-orb:nth-child(3) {
     width: 400px; height: 400px;
-    background: radial-gradient(circle, rgba(180,140,60,0.3), transparent 70%);
+    background: radial-gradient(circle, rgba(180,140,60,0.35), transparent 70%);
     top: 45%; left: 35%;
     animation-delay: 16s;
   }
@@ -82,16 +81,16 @@
     position: absolute;
     top: 0; left: 0; right: 0; bottom: 0;
     background-image:
-      radial-gradient(2px 2px at 15% 25%, rgba(212,168,83,0.7) 0%, transparent 100%),
-      radial-gradient(2px 2px at 25% 65%, rgba(212,168,83,0.6) 0%, transparent 100%),
-      radial-gradient(2px 2px at 35% 45%, rgba(212,168,83,0.7) 0%, transparent 100%),
-      radial-gradient(2px 2px at 45% 85%, rgba(212,168,83,0.6) 0%, transparent 100%),
-      radial-gradient(2px 2px at 55% 15%, rgba(212,168,83,0.7) 0%, transparent 100%),
-      radial-gradient(2px 2px at 65% 75%, rgba(212,168,83,0.6) 0%, transparent 100%),
-      radial-gradient(2px 2px at 75% 35%, rgba(212,168,83,0.7) 0%, transparent 100%),
-      radial-gradient(2px 2px at 85% 55%, rgba(212,168,83,0.6) 0%, transparent 100%),
-      radial-gradient(2px 2px at 10% 90%, rgba(212,168,83,0.7) 0%, transparent 100%),
-      radial-gradient(2px 2px at 90% 10%, rgba(212,168,83,0.6) 0%, transparent 100%);
+      radial-gradient(2px 2px at 15% 25%, rgba(212,168,83,0.8) 0%, transparent 100%),
+      radial-gradient(2px 2px at 25% 65%, rgba(212,168,83,0.7) 0%, transparent 100%),
+      radial-gradient(2px 2px at 35% 45%, rgba(212,168,83,0.8) 0%, transparent 100%),
+      radial-gradient(2px 2px at 45% 85%, rgba(212,168,83,0.7) 0%, transparent 100%),
+      radial-gradient(2px 2px at 55% 15%, rgba(212,168,83,0.8) 0%, transparent 100%),
+      radial-gradient(2px 2px at 65% 75%, rgba(212,168,83,0.7) 0%, transparent 100%),
+      radial-gradient(2px 2px at 75% 35%, rgba(212,168,83,0.8) 0%, transparent 100%),
+      radial-gradient(2px 2px at 85% 55%, rgba(212,168,83,0.7) 0%, transparent 100%),
+      radial-gradient(2px 2px at 10% 90%, rgba(212,168,83,0.8) 0%, transparent 100%),
+      radial-gradient(2px 2px at 90% 10%, rgba(212,168,83,0.7) 0%, transparent 100%);
     animation: shimmer 35s infinite linear;
     background-size: 1000px 1000px;
   }
@@ -100,8 +99,8 @@
     position: absolute;
     top: 0; left: 0; right: 0; bottom: 0;
     background-image:
-      linear-gradient(rgba(212,168,83,0.06) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(212,168,83,0.06) 1px, transparent 1px);
+      linear-gradient(rgba(212,168,83,0.08) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(212,168,83,0.08) 1px, transparent 1px);
     background-size: 80px 80px;
     animation: pulse 8s infinite ease-in-out;
   }
