@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Proposition de refonte - Senami SAS | Africa Golden Digital</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-30px); }
+  }
+
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(40px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+
+  @keyframes glow {
+    0%, 100% { opacity: 0.3; transform: scale(1); }
+    50% { opacity: 0.6; transform: scale(1.05); }
+  }
+
+  @keyframes drift {
+    0% { transform: translate(0, 0); }
+    25% { transform: translate(30px, -30px); }
+    50% { transform: translate(-20px, -60px); }
+    75% { transform: translate(-40px, -20px); }
+    100% { transform: translate(0, 0); }
+  }
+
+  @keyframes shimmer {
+    0% { background-position: -1000px 0; }
+    100% { background-position: 1000px 0; }
+  }
+
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #0a0a0a;
+    color: #ffffff;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* Arrière-plan animé chic */
+  .bg-animation {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    z-index: -1;
+    overflow: hidden;
+    background: #0a0a0a;
+  }
+
+  .bg-gradient {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background:
+      radial-gradient(ellipse at 20% 20%, rgba(212,168,83,0.08) 0%, transparent 50%),
+      radial-gradient(ellipse at 80% 80%, rgba(212,168,83,0.06) 0%, transparent 50%),
+      radial-gradient(ellipse at 50% 50%, rgba(20,20,20,1) 0%, #0a0a0a 100%);
+    animation: glow 10s infinite ease-in-out;
+  }
+
+  .bg-orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.4;
+    animation: drift 20s infinite ease-in-out;
+  }
+  .bg-orb:nth-child(1) {
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(212,168,83,0.3), transparent 70%);
+    top: -100px; right: -100px;
+    animation-delay: 0s;
+  }
+  .bg-orb:nth-child(2) {
+    width: 300px; height: 300px;
+    background: radial-gradient(circle, rgba(212,168,83,0.2), transparent 70%);
+    bottom: -50px; left: -50px;
+    animation-delay: 7s;
+  }
+  .bg-orb:nth-child(3) {
+    width: 250px; height: 250px;
+    background: radial-gradient(circle, rgba(180,140,60,0.2), transparent 70%);
+    top: 40%; left: 30%;
+    animation-delay: 14s;
+  }
+
+  .bg-particles {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-image:
+      radial-gradient(1px 1px at 15% 25%, rgba(212,168,83,0.4) 0%, transparent 100%),
+      radial-gradient(1px 1px at 25% 65%, rgba(212,168,83,0.3) 0%, transparent 100%),
+      radial-gradient(1px 1px at 35% 45%, rgba(212,168,83,0.4) 0%, transparent 100%),
+      radial-gradient(1px 1px at 45% 85%, rgba(212,168,83,0.3) 0%, transparent 100%),
+      radial-gradient(1px 1px at 55% 15%, rgba(212,168,83,0.4) 0%, transparent 100%),
+      radial-gradient(1px 1px at 65% 75%, rgba(212,168,83,0.3) 0%, transparent 100%),
+      radial-gradient(1px 1px at 75% 35%, rgba(212,168,83,0.4) 0%, transparent 100%),
+      radial-gradient(1px 1px at 85% 55%, rgba(212,168,83,0.3) 0%, transparent 100%),
+      radial-gradient(1px 1px at 10% 90%, rgba(212,168,83,0.4) 0%, transparent 100%),
+      radial-gradient(1px 1px at 90% 10%, rgba(212,168,83,0.3) 0%, transparent 100%);
+    animation: shimmer 40s infinite linear;
+    background-size: 1000px 1000px;
+  }
+
+  .bg-lines {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-image:
+      linear-gradient(rgba(212,168,83,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(212,168,83,0.03) 1px, transparent 1px);
+    background-size: 100px 100px;
+    mask-image: radial-gradient(circle at center, black 30%, transparent 80%);
+    -webkit-mask-image: radial-gradient(circle at center, black 30%, transparent 80%);
+  }
+
+  .container { max-width: 1100px; margin: 0 auto; padding: 40px 20px; position: relative; z-index: 1; }
+
+  /* Header */
+  .header {
+    text-align: center;
+    padding: 50px 0 40px;
+    animation: fadeInUp 1s ease-out;
+  }
+  .logo-container {
+    width: 150px; height: 150px;
+    margin: 0 auto 25px;
+    position: relative;
+  }
+  .logo-ring {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    border: 2px solid rgba(212,168,83,0.4);
+    border-radius: 50%;
+    animation: rotate 25s linear infinite;
+  }
+  .logo-ring::before {
+    content: '';
+    position: absolute;
+    top: -4px; left: 50%;
+    width: 8px; height: 8px;
+    background: #d4a853;
+    border-radius: 50%;
+    box-shadow: 0 0 12px rgba(212,168,83,0.8);
+  }
+  .logo-img {
+    width: 120px; height: 120px;
+    position: absolute;
+    top: 15px; left: 15px;
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow: 0 0 40px rgba(212,168,83,0.3);
+  }
+  .brand-name {
+    font-size: 36px; font-weight: bold;
+    color: #d4a853;
+    letter-spacing: 3px;
+    margin-bottom: 10px;
+    text-shadow: 0 0 25px rgba(212,168,83,0.4);
+  }
+  .tagline { font-size: 17px; color: #b0b0b0; font-style: italic; }
+
+  /* Cover */
+  .cover-title {
+    text-align: center;
+    padding: 30px 0 50px;
+    animation: fadeInUp 1s ease-out 0.3s backwards;
+  }
+  .cover-title h1 {
+    font-size: 38px; color: #d4a853; font-weight: bold;
+    letter-spacing: 2px;
+    text-shadow: 0 0 25px rgba(212,168,83,0.4);
+  }
+  .cover-title .subtitle {
+    font-size: 18px; color: #e0e0e0; margin-top: 12px;
+  }
+  .cover-title .meta {
+    font-size: 14px; color: #888; margin-top: 20px;
+    line-height: 1.8;
+  }
+
+  /* Sections glassmorphism */
+  .section {
+    margin: 50px 0;
+    padding: 35px;
+    background: rgba(22,22,22,0.7);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-left: 3px solid #d4a853;
+    border-radius: 16px;
+    animation: fadeInUp 0.9s ease-out backwards;
+    transition: all 0.4s ease;
+  }
+  .section:hover {
+    background: rgba(30,30,30,0.75);
+    box-shadow: 0 8px 32px rgba(212,168,83,0.08);
+  }
+
+  .section:nth-child(1) { animation-delay: 0.4s; }
+  .section:nth-child(2) { animation-delay: 0.6s; }
+  .section:nth-child(3) { animation-delay: 0.8s; }
+  .section:nth-child(4) { animation-delay: 1s; }
+  .section:nth-child(5) { animation-delay: 1.2s; }
+  .section:nth-child(6) { animation-delay: 1.4s; }
+  .section:nth-child(7) { animation-delay: 1.6s; }
+
+  .section-title {
+    font-size: 24px; color: #d4a853;
+    margin-bottom: 20px; font-weight: bold;
+    text-transform: uppercase; letter-spacing: 1.5px;
+  }
+
+  /* Problèmes */
+  .problem {
+    margin: 20px 0;
+    padding: 22px 25px;
+    background: rgba(30,25,25,0.6);
+    backdrop-filter: blur(8px);
+    border-left: 3px solid #ff4444;
+    border-radius: 10px;
+    transition: all 0.4s ease;
+  }
+  .problem:hover {
+    transform: translateX(6px);
+    background: rgba(40,25,25,0.8);
+    box-shadow: 0 5px 25px rgba(255,68,68,0.15);
+  }
+  .problem-header {
+    display: flex; align-items: baseline; gap: 14px;
+    margin-bottom: 10px;
+  }
+  .problem-num {
+    font-size: 24px; font-weight: bold; color: #ff4444;
+    opacity: 0.8;
+  }
+  .problem-title {
+    font-size: 18px; color: #ff4444; font-weight: bold;
+  }
+  .problem-desc {
+    font-size: 15px; color: #cccccc;
+    margin-bottom: 10px; padding-left: 38px;
+  }
+  .impact {
+    font-size: 14px; color: #ff9999; font-style: italic;
+    padding-left: 38px;
+    border-left: 2px solid #ff4444; margin-left: 38px;
+  }
+  .impact::before {
+    content: "Conséquence  ";
+    font-weight: bold; color: #ff4444; font-style: normal;
+    font-size: 13px;
+  }
+
+  /* Solution */
+  .solution-box {
+    background: linear-gradient(135deg, rgba(212,168,83,0.08), rgba(20,20,20,0.85));
+    backdrop-filter: blur(8px);
+    padding: 30px;
+    border-radius: 14px;
+    border: 1px solid rgba(212,168,83,0.25);
+    margin: 20px 0;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s ease;
+  }
+  .solution-box:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 35px rgba(212,168,83,0.2);
+    border-color: rgba(212,168,83,0.4);
+  }
+  .solution-title {
+    font-size: 20px; color: #d4a853; font-weight: bold;
+    margin-bottom: 20px;
+    letter-spacing: 1px;
+  }
+  .feature-list {
+    list-style: none; padding: 0;
+  }
+  .feature-list li {
+    padding: 11px 0 11px 28px;
+    position: relative;
+    font-size: 15px; color: #e0e0e0;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    transition: all 0.3s ease;
+  }
+  .feature-list li:hover {
+    color: #d4a853;
+    padding-left: 32px;
+  }
+  .feature-list li::before {
+    content: "✦";
+    position: absolute; left: 0;
+    color: #d4a853; font-size: 14px;
+    text-shadow: 0 0 8px rgba(212,168,83,0.5);
+  }
+
+  /* Nouvelles fonctionnalités */
+  .features-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin-top: 20px;
+  }
+  .feature-item {
+    padding: 16px 18px;
+    background: rgba(212,168,83,0.06);
+    border: 1px solid rgba(212,168,83,0.15);
+    border-radius: 10px;
+    font-size: 14px; color: #e0e0e0;
+    transition: all 0.4s ease;
+    backdrop-filter: blur(4px);
+  }
+  .feature-item:hover {
+    background: rgba(212,168,83,0.12);
+    border-color: rgba(212,168,83,0.3);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(212,168,83,0.1);
+  }
+
+  /* Avantages */
+  .advantage {
+    margin: 20px 0;
+    padding: 25px;
+    background: rgba(25,25,25,0.6);
+    backdrop-filter: blur(8px);
+    border-radius: 12px;
+    border-top: 2px solid #d4a853;
+    transition: all 0.4s ease;
+  }
+  .advantage:hover {
+    transform: translateY(-4px);
+    background: rgba(35,35,35,0.7);
+    box-shadow: 0 10px 30px rgba(212,168,83,0.1);
+  }
+  .advantage-title {
+    font-size: 18px; color: #d4a853; font-weight: bold;
+    margin-bottom: 10px;
+    letter-spacing: 0.5px;
+  }
+  .advantage-desc {
+    font-size: 15px; color: #cccccc;
+  }
+
+  /* CTA */
+  .cta {
+    text-align: center;
+    padding: 50px 40px;
+    background: linear-gradient(135deg, #d4a853 0%, #b8942f 100%);
+    border-radius: 18px;
+    margin: 50px 0;
+    position: relative;
+    overflow: hidden;
+    animation: fadeInUp 1s ease-out 1.2s backwards;
+    box-shadow: 0 10px 40px rgba(212,168,83,0.3);
+  }
+  .cta::before {
+    content: '';
+    position: absolute;
+    top: -50%; left: -50%;
+    width: 200%; height: 200%;
+    background: linear-gradient(45deg, transparent, rgba(255,255,255,0.25), transparent);
+    animation: shimmer 4s infinite;
+  }
+  .cta-title {
+    font-size: 28px; color: #0a0a0a; font-weight: bold;
+    margin-bottom: 15px;
+    position: relative; z-index: 1;
+    letter-spacing: 1.5px;
+  }
+  .cta-text {
+    font-size: 17px; color: #1a1a1a;
+    margin-bottom: 25px;
+    position: relative; z-index: 1;
+  }
+  .contact-info {
+    font-size: 19px; color: #0a0a0a; font-weight: bold;
+    position: relative; z-index: 1;
+  }
+  .contact-info div {
+    margin: 10px 0;
+  }
+
+  /* Footer */
+  .footer {
+    text-align: center;
+    padding: 40px 0;
+    border-top: 1px solid rgba(255,255,255,0.08);
+    color: #888;
+    font-size: 14px;
+    animation: fadeInUp 1s ease-out 1.4s backwards;
+  }
+
+  @media (max-width: 768px) {
+    .brand-name { font-size: 24px; letter-spacing: 1px; }
+    .cover-title h1 { font-size: 26px; }
+    .section-title { font-size: 18px; }
+    .cta-title { font-size: 20px; }
+    .features-grid { grid-template-columns: 1fr; }
+    .logo-container { width: 120px; height: 120px; }
+    .logo-img { width: 100px; height: 100px; top: 10px; left: 10px; }
+    .problem-desc, .impact { padding-left: 0; margin-left: 0; }
+    .problem-header { gap: 8px; }
+  }
+</style>
+</head>
+<body>
+
+  <!-- Arrière-plan animé chic -->
+  <div class="bg-animation">
+    <div class="bg-gradient"></div>
+    <div class="bg-orb"></div>
+    <div class="bg-orb"></div>
+    <div class="bg-orb"></div>
+    <div class="bg-particles"></div>
+    <div class="bg-lines"></div>
+  </div>
+
+  <div class="container">
+
+    <!-- Header -->
+    <div class="header">
+      <div class="logo-container">
+        <div class="logo-ring"></div>
+        <img src="logo_africa_golden.png" alt="Africa Golden Digital" class="logo-img">
+      </div>
+      <div class="brand-name">AFRICA GOLDEN DIGITAL</div>
+      <div class="tagline">Connecter l'Afrique à l'Excellence Digitale</div>
+    </div>
+
+    <!-- Cover -->
+    <div class="cover-title">
+      <h1>PROPOSITION DE REFONTE TOTALE</h1>
+      <div class="subtitle">Site Internet — Senami SAS</div>
+      <div class="meta">www.senamisas.com<br>
+      Préparée par Africa Golden Digital<br>
+      goldendigitaljores@gmail.com<br>
+      WhatsApp +229 01 56 47 40 51</div>
+    </div>
+
+    <!-- Qui sommes-nous -->
+    <div class="section">
+      <div class="section-title">Qui sommes-nous ?</div>
+      <p style="font-size: 16px; color: #e0e0e0;">
+        Africa Golden Digital est une agence digitale africaine spécialisée dans la transformation numérique des entreprises. Nous concevons des sites web, applications, designs, stratégies de communication et solutions technologiques adaptées aux réalités africaines.
+      </p>
+      <p style="font-size: 16px; color: #e0e0e0; margin-top: 15px;">
+        <strong style="color: #d4a853;">Notre approche :</strong> comprendre votre besoin, puis construire une solution qui génère des résultats concrets.
+      </p>
+    </div>
+
+    <!-- Analyse -->
+    <div class="section">
+      <div class="section-title">Analyse de votre site actuel — senamisas.com</div>
+      <p style="font-size: 16px; color: #cccccc; margin-bottom: 25px;">
+        Nous avons visité et étudié votre site en détail. Voici les points qui, selon nous, freinent aujourd'hui la crédibilité et les performances de Senami SAS en ligne.
+      </p>
+
+      <div class="problem">
+        <div class="problem-header">
+          <div class="problem-num">1</div>
+          <div class="problem-title">Le logo renvoie vers un autre site</div>
+        </div>
+        <div class="problem-desc">En cliquant sur le logo Senami (en haut à gauche, sur toutes les pages), le visiteur n'est pas ramené à l'accueil de senamisas.com : il est redirigé vers un site externe (une maquette de démonstration d'un autre studio). C'est le premier élément que voit chaque visiteur.</div>
+        <div class="impact">Un visiteur qui clique sur votre logo se retrouve sur un site qui n'a rien à voir avec Senami. Cela nuit gravement au sérieux et à la crédibilité de la marque dès les premières secondes de visite.</div>
+      </div>
+
+      <div class="problem">
+        <div class="problem-header">
+          <div class="problem-num">2</div>
+          <div class="problem-title">Formulaire d'inscription à la newsletter cassé</div>
+        </div>
+        <div class="problem-desc">Le bloc « Lettre d'information » n'affiche pas un vrai formulaire mais un simple symbole (Δ) à la place des champs d'inscription. Le formulaire est mal configuré et n'est pas fonctionnel.</div>
+        <div class="impact">Vous ne pouvez récupérer aucun email de prospect via ce formulaire. Chaque visiteur intéressé qui tente de s'inscrire tombe sur un bloc cassé, et votre base de contacts reste vide.</div>
+      </div>
+
+      <div class="problem">
+        <div class="problem-header">
+          <div class="problem-num">3</div>
+          <div class="problem-title">Informations de contact incohérentes</div>
+        </div>
+        <div class="problem-desc">Les numéros de téléphone affichés en haut de page ne sont pas les mêmes qu'en bas de page. L'adresse email cliquable contient une faute de frappe différente de l'adresse affichée à l'écran. L'adresse postale indiquée est à Paris, alors que l'activité et les contacts WhatsApp sont basés au Bénin, en Suisse et au Canada.</div>
+        <div class="impact">Un client ou un futur ambassadeur qui veut vous joindre peut se tromper de numéro ou d'email, ou douter de la localisation réelle de l'entreprise. Cela crée de la confusion et fait perdre des contacts qualifiés.</div>
+      </div>
+
+      <div class="problem">
+        <div class="problem-header">
+          <div class="problem-num">4</div>
+          <div class="problem-title">Aucune page « Produits » dédiée</div>
+        </div>
+        <div class="problem-desc">Le menu principal ne propose pas de page listant vos produits (S-Complète, S-Brush, S-Smile, etc.). Les boutons « Voir nos produits » et « Découvrez nos produits » redirigent tous vers la page Blog, qui n'est pas conçue pour présenter un catalogue.</div>
+        <div class="impact">Un visiteur venu spécifiquement pour découvrir vos produits ne trouve pas de catalogue clair avec fiches, prix ou descriptions détaillées. Vous perdez des ventes potentielles.</div>
+      </div>
+
+      <div class="problem">
+        <div class="problem-header">
+          <div class="problem-num">5</div>
+          <div class="problem-title">Référencement Google insuffisant</div>
+        </div>
+        <div class="problem-desc">Le site ne possède pas de description ni d'image de partage identifiables par Google et les réseaux sociaux (Facebook, WhatsApp). La structure du contenu n'est pas optimisée pour le référencement naturel.</div>
+        <div class="impact">Quand un prospect recherche « Senami », vos produits ou la Nutrition Cellulaire Active sur Google, votre site a moins de chances d'apparaître en bonne position. Vous perdez du trafic gratuit et qualifié.</div>
+      </div>
+
+      <div class="problem">
+        <div class="problem-header">
+          <div class="problem-num">6</div>
+          <div class="problem-title">Site lourd et basé sur un modèle générique mal adapté</div>
+        </div>
+        <div class="problem-desc">Le site utilise un thème Elementor standard avec de très nombreuses images non optimisées (captures d'écran de PDF, visuels haute résolution). La structure de navigation manque également d'une page Contact visible dans le menu principal.</div>
+        <div class="impact">Sur une connexion mobile moyenne en Afrique, ce type de page charge lentement : beaucoup de visiteurs quittent avant que le contenu ne s'affiche complètement, surtout sur téléphone.</div>
+      </div>
+    </div>
+
+    <!-- Solution -->
+    <div class="section">
+      <div class="section-title">Notre proposition : refonte totale</div>
+      <p style="font-size: 17px; color: #e0e0e0; margin-bottom: 20px;">
+        Nous ne corrigeons pas l'existant : <strong style="color: #d4a853;">ensemble, nous reconstruisons un site neuf, rapide, professionnel, fidèle à l'image scientifique et premium de Senami, et pensé pour convertir les visiteurs en clients et en ambassadeurs.</strong>
+      </p>
+
+      <div class="solution-box">
+        <div class="solution-title">CE QUE NOUS CONSTRUISONS ENSEMBLE :</div>
+        <ul class="feature-list">
+          <li>Design premium et cohérent — une identité visuelle propre et harmonisée (couleurs, typographies, images retravaillées), à la hauteur d'une marque de bien-être internationale.</li>
+          <li>Structure complète et claire — Accueil, À propos, Produits (nouvelle page catalogue), Opportunité/MLM, Blog, WHES Academy, Contact — un menu simple où chaque visiteur trouve immédiatement ce qu'il cherche.</li>
+          <li>Site rapide, images optimisées — toutes les images sont compressées et redimensionnées pour un chargement rapide, y compris sur connexion mobile limitée.</li>
+          <li>Mobile-first — un site conçu d'abord pour le téléphone, ensuite adapté à la tablette et à l'ordinateur — l'essentiel du trafic africain se fait sur mobile.</li>
+          <li>Coordonnées unifiées — un seul numéro et un seul email affichés partout, vérifiés et corrigés, avec un bouton WhatsApp direct sur chaque page.</li>
+          <li>Formulaires fonctionnels — newsletter et contact testés, sans bug, avec les emails reçus directement dans votre boîte mail.</li>
+          <li>SEO activé — titre, description et image de partage configurés sur chaque page, structure optimisée pour Google et pour un aperçu propre sur WhatsApp/Facebook.</li>
+          <li>Documentation et formation — un guide simple pour que votre équipe puisse mettre à jour textes, images et articles de blog sans dépendre d'un développeur.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Nouvelles fonctionnalités -->
+    <div class="section">
+      <div class="section-title">Nouvelles fonctionnalités que nous pouvons ajouter</div>
+      <p style="font-size: 16px; color: #cccccc; margin-bottom: 20px;">
+        Au-delà de la correction des problèmes actuels, voici des fonctionnalités que nous recommandons pour faire du site un véritable outil de croissance :
+      </p>
+      <div class="features-grid">
+        <div class="feature-item">📦 Page « Produits » avec fiches détaillées (description, bienfaits, composition, photos)</div>
+        <div class="feature-item">🛒 Boutique en ligne avec commande directe et paiement Mobile Money / carte bancaire</div>
+        <div class="feature-item">🤝 Espace « Devenir Ambassadeur » avec formulaire d'inscription à l'opportunité MLM</div>
+        <div class="feature-item">💬 Bouton WhatsApp flottant sur toutes les pages pour un contact instantané</div>
+        <div class="feature-item">🌐 Site en deux langues (Français / Anglais) pour vos marchés internationaux</div>
+        <div class="feature-item">🏆 Espace « Certifications » mettant en valeur vos accréditations et avis clients</div>
+        <div class="feature-item">⚙️ Back-office simple pour publier articles et actualités sans compétence technique</div>
+        <div class="feature-item">📍 Intégration Google Maps et réseaux sociaux à jour sur la page Contact</div>
+      </div>
+    </div>
+
+    <!-- Avantages -->
+    <div class="section">
+      <div class="section-title">Pourquoi travailler avec nous ?</div>
+
+      <div class="advantage">
+        <div class="advantage-title">1. Vision 360 degrés</div>
+        <div class="advantage-desc">Nous ne faisons pas que des sites web. Nous gérons aussi votre communication digitale, vos visuels, vos vidéos, votre stratégie marketing et vos outils de gestion. Un seul interlocuteur pour tout votre numérique.</div>
+      </div>
+
+      <div class="advantage">
+        <div class="advantage-title">2. Solutions adaptées à l'Afrique</div>
+        <div class="advantage-desc">Nous comprenons les réalités du marché africain : connectivité variable, usage mobile, communication WhatsApp. Nous construisons des solutions qui fonctionnent vraiment dans votre contexte.</div>
+      </div>
+
+      <div class="advantage">
+        <div class="advantage-title">3. Résultats mesurables</div>
+        <div class="advantage-desc">Notre objectif n'est pas de faire un joli site : c'est de vous aider à vendre davantage, à gagner en visibilité et à automatiser vos opérations. Chaque élément est pensé pour convertir les visiteurs en clients.</div>
+      </div>
+
+      <div class="advantage">
+        <div class="advantage-title">4. Expertise et références</div>
+        <div class="advantage-desc">Nous travaillons déjà sur des projets concrets : BéninConnect (plateforme de mise en relation d'artisans), EntreFlow (SaaS de gestion pour PME), et d'autres sites pour entreprises africaines.</div>
+      </div>
+    </div>
+
+    <!-- CTA Final -->
+    <div class="cta">
+      <div class="cta-title">CONSTRUISONS ENSEMBLE VOTRE NOUVEAU SITE</div>
+      <div class="cta-text">Vous voulez un site moderne, rapide et professionnel ?<br>Nous sommes prêts à le concevoir avec vous, de A à Z.</div>
+      <div class="contact-info">
+        <div>📧 goldendigitaljores@gmail.com</div>
+        <div>📱 WhatsApp : +229 01 56 47 40 51</div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+      <p><strong style="color: #d4a853;">AFRICA GOLDEN DIGITAL</strong> — Connecter l'Afrique à l'Excellence Digitale</p>
+      <p style="margin-top: 8px;">Agence digitale africaine | Sites web, Design, Marketing, Audiovisuel, Solutions IT</p>
+    </div>
+
+  </div>
+
+</body>
+</html>
